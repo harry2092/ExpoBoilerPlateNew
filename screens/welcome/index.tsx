@@ -1,9 +1,10 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import useColorStyles from "@/hooks/useColorStyles";
 import styles from "./styles";
 import { ICONS } from "@/constants/icons";
+import { images } from "@/constants/images";
 
 /**
  * Welcome Component
@@ -22,6 +23,8 @@ export default function Welcome() {
       <Text style={style.text}>{t("appKeys.Home")}</Text>
 
       {ICONS.Alphabetic({ height: 20, width: 20 })}
+
+      <Image source={images.logo} style={{height:100,width:100}} />
     </View>
   );
 }
