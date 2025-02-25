@@ -1,6 +1,6 @@
 import * as SplashScreen from "expo-splash-screen";
 import { Fragment, useEffect } from "react";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Provider } from "react-redux";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -16,6 +16,7 @@ import { store } from "@/redux/store";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const router = useRouter();
   useEffect(() => {
     /**
      * Load assets (images and fonts) and then hide the splash screen.
@@ -23,13 +24,18 @@ export default function RootLayout() {
     async function prepareApp() {
       await loadAssets();
       setTimeout(() => {
-        
+
         SplashScreen.hideAsync(); // Hide splash screen after loading
+
       }, 3000);
     }
 
     prepareApp();
   }, []);
+
+  useEffect(() => {
+    router.replace("/Welcome")
+  }, [router])
 
   /**
    * Function to load all required assets (images and fonts).
@@ -51,6 +57,7 @@ export default function RootLayout() {
             <ThemeProvider>
               {/* Navigation Stack */}
               <Stack
+
                 screenOptions={{
                   headerShown: false,
                 }}
